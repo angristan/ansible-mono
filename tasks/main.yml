@@ -1,0 +1,14 @@
+---
+- name: Add Mono APT key
+  apt_key:
+    id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    keyserver: keyserver.ubuntu.com
+
+- name: Add Mono APT repo
+  apt_repository:
+    repo: deb https://download.mono-project.com/repo/{{ ansible_distribution|lower }} stable-{{ ansible_distribution_release }} main
+    filename: 'mono'
+
+- name: Install Mono
+  apt:
+    name: mono-devel
